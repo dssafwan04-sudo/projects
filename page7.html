@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Nexus University</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing:border-box;
+}
+marquee {
+  text-transform: uppercase;
+  word-spacing: 1.9;
+  font-size: 18px;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  padding: 10px 10px;
+}
+marquee span {
+  color: #14b8a5;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background-color: white;
+}
+.nav {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+}
+a {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  font-size: 18px;
+}
+a:hover {
+  color: #14b8a5;
+  text-decoration: underline;
+}
+button {
+  background: transparent;
+  border: 1px solid #14b8a5;
+  border-radius: 999px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #14b8a5;
+  color: white;
+}
+span {
+  color: #14b8a5;
+}
+h1 i {
+  background: linear-gradient(to bottom right, #10b981, #2563eb);
+  color: white;
+  padding: 12px;
+  border-radius: 15px;
+  font-size: 24px;
+}
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 80px 60px;
+  min-height: 100vh;
+  color: white;
+  overflow: hidden;
+  animation: bgChange 6s infinite alternate;
+}
+@keyframes bgChange {
+  0% {
+    background: #2563eb;
+  }
+  100% {
+    background: #10b981;
+  }
+}
+.hero-content {
+  width: 50%;
+}
+.badge {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+  padding: 10px 20px;
+  margin-bottom: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  width: fit-content;
+}
+.badge span {
+  color: black;
+}
+.hero-content h1 {
+  font-size: 90px;
+  line-height: 1.1;
+  font-weight: 800;
+  margin-bottom: 30px;
+}
+.line {
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.5);
+}
+.mark {
+  color: #d9ff8b;
+}
+.hero-content p {
+  font-size: 24px;
+  line-height: 1.6;
+  max-width: 700px;
+  color: rgba(255, 255, 255, 0.9);
+}
+.button {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 10px;
+}
+.hero-content a {
+  text-decoration: none;
+  color: black;
+  font-size: 25px;
+  background-color: white;
+  border-radius: 999px;
+  padding: 10px 20px;
+}
+.hero-content .btn1 {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+}
+.hero-image {
+  width: 400px;
+  position: relative;
+  z-index: 2;
+}
+.image1 {
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
+  overflow: hidden;
+  transform: rotate(-3deg);
+}
+.image1 img {
+  width: 100%;
+  display: block;
+}
+.image2 {
+  position: absolute;
+  top: -150px;
+  right: -40px;
+  width: 180px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 4px solid white;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  transform: rotate(10deg);
+}
+.image2 img {
+  width: 100%;
+}
+.fixed {
+  position: absolute;
+  left: -50px;
+  bottom: 120px;
+  background: white;
+  color: black;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+.fixed i {
+  background: #d9ffe4;
+  color: #12a150;
+  padding: 18px;
+  border-radius: 50%;
+  font-size: 24px;
+}
+.fixed h3 {
+  font-size: 18px;
+  color: gray;
+}
+.fixed h2 {
+  font-size: 40px;
+}
+/*cards*/
+.cards {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  text-align: center;
+  width: 1000px;
+  background-color: white;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  padding: 60px 40px;
+  margin-top: -80px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.card {
+  width: 200px;
+}
+.card h2 {
+  font-size: 46px;
+  font-family: Merriweather, serif;
+}
+.card p {
+  font-size: 20px;
+  color: grey;
+}
+/*academics*/
+.academic {
+  padding: 60px 40px;
+}
+.data {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+.data span {
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+}
+.data h3 {
+  font-size: 36px;
+}
+.data p {
+  color: rgb(75 85 99);
+  width: 700px;
+  margin: auto;
+  font-size: 20px;
+  line-height: 1.5;
+  text-align: center;
+}
+.grids {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 40px 20px;
+}
+.grid {
+  background-color: white;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  padding: 30px 30px;
+  border-radius: 20px;
+  line-height: 1.5;
+  transition: 0.5s;
+}
+.grid:hover {
+  transform: translateY(-10px);
+  border: 3px solid #10b981;
+}
+.grid h3 {
+  font-weight: bold;
+  font-size: 25px;
+}
+.grid p {
+  font-size: 20px;
+}
+.grid1 i {
+  color: rgb(39, 108, 219);
+  background-color: #b2c5ed;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+.grid2 i {
+  color: red;
+  background-color: rgb(229, 177, 177);
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+.grid3 i {
+  color: purple;
+  background-color: rgb(232, 189, 232);
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+.grid4 i {
+  color: green;
+  background-color: rgb(202, 235, 202);
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+.grid5 i {
+  color: orange;
+  background-color: rgb(241, 227, 201);
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+.grid6 {
+  background-color: rgb(19 78 74);
+  color: white;
+}
+.grid6 i {
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 20px;
+   border: 1px solid white;
+}
+.grid6 a{
+    color: white;
+    border: 1px solid white;
+    border-radius: 999px;
+    padding: 10px 20px;
+}
+.grid a{
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.campus-life{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    padding: 100px 60px;
+    background: #f8fafc;
+}
+
+.campus-text h5{
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: #1e293b;
+    margin-bottom: 20px;
+}
+
+.campus-text h1{
+    font-size: 70px;
+    font-family: Merriweather, serif;
+    margin-bottom: 25px;
+    color: #111827;
+}
+
+.campus-text p{
+    font-size: 26px;
+    line-height: 1.7;
+    color: #4b5563;
+    width: 850px;
+}
+
+.campus-btn a{
+    font-size: 22px;
+    font-weight: 600;
+    color: #111827;
+    border-bottom: 4px solid #14b8a5;
+    padding-bottom: 8px;
+    transition: 0.4s;
+}
+
+.campus-btn a:hover{
+    color: #14b8a5;
+    padding-left: 10px;
+} 
+
+.campus-gallery{
+    display: flex;
+    gap: 25px;
+    padding: 20px 60px 100px;
+}
+
+
+.campus-gallery > .gallery-box:first-child{
+    width: 320px;
+}
+
+.gallery-right{
+    width: 72%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.gallery-right > .gallery-box{
+    width: 100%;
+}
+
+
+.bottom-images{
+    display: flex;
+    gap: 20px;
+}
+
+.side-images{
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.side-box{
+    width: 50%;
+}
+
+.img2,
+.img3{
+    height: 250px;
+}
+
+.bottom-images .gallery-box{
+    width: 50%;
+}
+
+.gallery-box{
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.gallery-box img{
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    transition: 0.6s;
+}
+
+
+.campus-gallery > .gallery-box:first-child img{
+    height: 320px;
+    width: 320px;
+}
+
+.img1{
+    height: 250px;
+}
+
+.img2{
+  height:450px;
+}
+.img3{
+    height: 250px;
+}
+
+.overlay{
+    position: absolute;
+    left:0;
+    bottom:0;
+    width:100%;
+    height:100%;
+
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.9),
+        rgba(0,0,0,0.2),
+        transparent
+    );
+
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+
+    padding: 30px;
+    color: white;
+
+    opacity:0;
+    transition: 0.5s;
+}
+
+
+.overlay h2{
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.overlay p{
+    font-size: 18px;
+    
+}
+
+.gallery-box:hover img{
+    transform: scale(1.1);
+}
+.gallery-box:hover .overlay{
+  opacity:1;
+}
+.context {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+  padding: 80px 60px;
+  align-items: center;
+  text-align: center;
+  background-color: rgb(3, 3, 34);
+  color: white;
+}
+.center h5 {
+  font-size: 46px;
+}
+.center p {
+  font-size: 20px;
+  width: 800px;
+  margin: auto;
+  line-height: 1.5;
+}
+.buttons {
+  display: inline-block;
+  margin-top: 30px;
+}
+.btn2 {
+  color: white;
+  background-color: #10b981;
+  font-size: 20px;
+}
+.btn3 {
+  color: white;
+  font-size: 20px;
+}
+/*footer*/
+footer {
+  background: #000;
+  color: white;
+  padding: 70px 80px 30px;
+}
+.footer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 60px;
+}
+.footer h6 {
+  font-size: 28px;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+}
+.footer h6 i {
+  background: linear-gradient(to bottom right, #14b8a5, #2563eb);
+  padding: 10px;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+footer p {
+  color: #cbd5e1;
+  line-height: 1.8;
+  margin-bottom: 25px;
+  font-size: 17px;
+}
+footer a {
+  display: block;
+  color: #cbd5e1;
+  text-decoration: none;
+  margin-bottom: 18px;
+  font-size: 17px;
+}
+.icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+}
+.icons i {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.icons i:hover {
+  background: #14b8a5;
+}
+footer input {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  background: #111827;
+  color: white;
+  margin: 20px 0;
+  font-size: 16px;
+}
+footer button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 17px;
+  cursor: pointer;
+}
+footer button:hover {
+  background: #0f766e;
+}
+hr {
+  color: grey;
+}
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 20px;
+}
+.link {
+  display: flex;
+  gap: 25px;
+}
+
+  </style>
+</head>
+
+<body>
+
+  <marquee behavior="scroll" direction="left">
+        Scholarship Application Deadline:Nov1 <span><i class="fa-solid fa-star"></i> Admissions Open for Fall
+            2027</span> |
+        Ranked #1 in Innovation | <span><i class="fa-regular fa-calendar"></i> Upcoming Event: Tech Symposium on Oct 15
+            |</span>
+        Scholarship Application Deadline: <span> <i class="fa-regular fa-calendar"></i> Nov 1 Admissions Open for Fall
+            2027</span></marquee>
+    <header>
+        <div>
+            <h1><i class="fa-solid fa-graduation-cap"></i> Nexus <span>.</span></h1>
+        </div>
+        <div class="nav">
+            <a href="#">About</a>
+            <a href="#">Academics</a>
+            <a href="#">Campus Life</a>
+            <button>Apply Now</button>
+        </div>
+    </header>
+    <section class="hero">
+        <div class="hero-content">
+            <div class="badge">
+                <i class="fa-solid fa-earth-americas"></i>
+                <span>A GLOBAL LEARNING HUB</span>
+            </div>
+            <h1> Empowering <br> the <br> <span class="line">Innovators</span> of <br><span
+                    class="mark">Tomorrow.</span>
+            </h1>
+            <p>
+                Join a vibrant community of scholars, researchers, and creators.
+                At Nexus University, we blur the lines between traditional education
+                and future technologies.
+            </p>
+            <div class="button">
+                <a href="#">Explore Programs &rarr;</a>
+                <button class="btn1"><i class="fa-solid fa-play"></i> Virtual tour</button>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="image1">
+                <img src="https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="University">
+            </div>
+            
+                
+          
+            <div class="fixed">
+                <i class="fa-solid fa-chart-line"></i>
+                <div>
+                    <h3>Placement Rate</h3>
+                    <h2>98.5%</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="cards">
+        <div class="card">
+            <h2>150+</h2>
+            <p>Academic Programs</p>
+        </div>
+        <div class="card">
+            <h2>12k</h2>
+            <p>Diverse Students</p>
+        </div>
+        <div class="card">
+            <h2>40+</h2>
+            <p>Research Centers</p>
+        </div>
+        <div class="card">
+            <h2>#10</h2>
+            <p>Global Ranking</p>
+        </div>
+    </section>
+    <section class="academic">
+        <div class="data">
+            <span>ACADEMICS</span>
+            <h3>Discover Your Passion</h3>
+            <p>Choose from over 150 undergraduate and graduate programs designed to equip you
+                with the skills needed to thrive in a rapidly evolving world.</p>
+        </div>
+        <div class="grids">
+            <div class="grid grid1">
+                <i class="fa-solid fa-computer"></i>
+                <h3>Computer Science & AI</h3>
+                <P>Pioneer the future of technology with our cutting-edge
+                    curriculum focusing on artificial intelligence, machine learning,...</P>
+                <a href="#">Explore Faculty →</a>
+            </div>
+            <div class="grid grid2">
+                <i class="fa-solid fa-heart-pulse"></i>
+                <h3>Medical Sciences</h3>
+                <p>State-of-the-art facilities and clinical partnerships prepare the
+                    next generation of healthcare leaders and medical...</p>
+                <a href="#">Explore Faculty →</a>
+            </div>
+            <div class="grid grid3">
+                <i class="fa-solid fa-palette"></i>
+                <h3>Arts & Design</h3>
+                <p>Cultivate your creative voice in an interdisciplinary environment that
+                    blends traditional techniques with modern digit...</p>
+                <a href="#">Explore Faculty →</a>
+            </div>
+            <div class="grid grid4">
+                <i class="fa-solid fa-chart-pie"></i>
+                <h3>Business Administration</h3>
+                <p>Develop entrepreneurial acumen and leadership skills through
+                    real-world case studies and global internship...</p>
+                <a href="#">Explore Faculty →</a>
+            </div>
+            <div class="grid grid5">
+                <i class="fa-solid fa-scale-balanced"></i>
+                <h3>Law & Public Policy</h3>
+                <p>Shape the foundation of society. Our rigorous program emphasizes
+                    critical thinking, ethics, and practical advocacy.</p>
+                <a href="#">Explore Faculty →</a>
+            </div>
+            <div class="grid grid6">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <h3>View All Programs</h3>
+                <p>Browse our complete catalog of undergraduate, graduate,
+                    and professional certificate programs.</p>
+                <a href="#">Full Catalog</a>
+            </div>
+        </div>
+        <section class="campus-life">
+
+    <div class="campus-text">
+        <h5>CAMPUS LIFE</h5>
+
+        <h1>More Than Just Classes</h1>
+
+        <p>
+            Immerse yourself in a dynamic environment featuring
+            state-of-the-art facilities, 200+ student clubs,
+            and vibrant cultural events.
+        </p>
+    </div>
+
+    <div class="campus-btn">
+        <a href="#">Take a Virtual Tour</a>
+    </div>
+
+</section>
+
+<section class="campus-gallery">
+
+
+    <div class="gallery-box">
+
+        <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            alt="">
+
+        <div class="overlay">
+            <h2>Historic Main Hall</h2>
+            <p>Heart of our campus architecture</p>
+        </div>
+
+    </div>
+    <div class="gallery-right">
+
+
+
+        <div class="gallery-box">
+
+            <img class="img1"
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop"
+                alt="">
+
+            <div class="overlay">
+                <h2>Guest Lectures</h2>
+                <p>Learn from industry leaders</p>
+            </div>
+
+        </div>
+
+
+        <div class="side-images">
+
+
+    <div class="gallery-box side-box">
+
+        <img class="img2"
+            src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=1200&auto=format&fit=crop"
+            alt="">
+
+        <div class="overlay">
+            <h2>Guest Lectures</h2>
+            <p>Learn from industry leaders</p>
+        </div>
+
+    </div>
+
+
+
+    <div class="gallery-box side-box">
+
+        <img class="img3"
+            src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop"
+            alt="">
+
+        <div class="overlay">
+            <h2>Student Organisations</h2>
+            <p>Find your community</p>
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+<section class="context">
+        <div class="center">
+            <h5>Ready to Shape Your Future?</h5>
+            <p>Join a community of thousands of students from over 100 countries.
+                Application for the upcoming semester closes soon. Don't miss your chance.</p>
+            <div class="buttons">
+                <button class="btn2">Start Application Now</button>
+                <button class="btn3">Request Information</button>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="footer">
+        <div>
+            <h6><i class="fa-solid fa-graduation-cap"></i> Nexus <span>.</span></h6>
+            <p>123 University Avenue Innovation District, NY 10001 contact@nexus.edu +1 (800) 555-0199</p>
+            <div class="icons">
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-linkedin-in"></i>
+                <i class="fa-brands fa-youtube"></i>
+            </div>
+        </div>
+        <div>
+            <h6>Quick Links</h6>
+            <a href="#">Admissions</a>
+            <a href="#">Financial Aid</a>
+            <a href="#">Academic Calendar</a>
+            <a href="#">Student Portal</a>
+            <a href="#">Alumni Network</a>
+        </div>
+        <div>
+            <h6>Academics</h6>
+            <a href="#">Undergraduate Programs</a>
+            <a href="#">Online Learning</a>
+            <a href="#">Research Centers</a>
+            <a href="#">Libraries</a>
+        </div>
+        <div>
+            <h6>Stay Updated</h6>
+            <a href="">Subscribe to our newsletter for the latest campus news and events.</a>
+            <input type="email" placeholder="EMAIL Address">
+            <button>Subscrible</button>
+        </div>
+        </div>
+        <hr>
+        <div class="footer-bottom">
+        <div>
+            <p>&copy; 2026 Nexus University. All rights reserved.</p>
+        </div>
+        <div class="link">
+            <a href="">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Accessibility</a>
+        </div>
+        </div>
+    </footer>
+    </section>
+        
+
+</body>
+</html>
