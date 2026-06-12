@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation System</title>
+</head>
+<body>
+
+    <h1>Movie Recommendation System</h1>
+
+    <script>
+
+        // =====================================
+        // Movie Data
+        // =====================================
+
+        let movies = [
+            {
+                id: 1,
+                title: "Inception",
+                genre: "Sci-Fi",
+                year: 2010,
+                rating: 8.8,
+                language: "English"
+            },
+            {
+                id: 2,
+                title: "RRR",
+                genre: "Action",
+                year: 2022,
+                rating: 8.5,
+                language: "Telugu"
+            },
+            {
+                id: 3,
+                title: "Pushpa",
+                genre: "Action",
+                year: 2021,
+                rating: 7.9,
+                language: "Telugu"
+            },
+            {
+                id: 4,
+                title: "Baahubali",
+                genre: "Action",
+                year: 2015,
+                rating: 8.2,
+                language: "Telugu"
+            },
+            {
+                id: 5,
+                title: "Avatar",
+                genre: "Sci-Fi",
+                year: 2009,
+                rating: 8.2,
+                language: "English"
+            },
+            {
+                id: 6,
+                title: "3 Idiots",
+                genre: "Comedy",
+                year: 2009,
+                rating: 8.4,
+                language: "Hindi"
+            },
+            {
+                id: 7,
+                title: "Kalki",
+                genre: "Sci-Fi",
+                year: 2024,
+                rating: 8.6,
+                language: "Telugu"
+            },
+            {
+                id: 8,
+                title: "Jersey",
+                genre: "Drama",
+                year: 2019,
+                rating: 8.1,
+                language: "Telugu"
+            }
+        ];
+
+        // =====================================
+        // 1. Display All Movies
+        // =====================================
+
+        console.log("===== ALL MOVIES =====");
+
+        movies.forEach(movie => {
+            console.log(
+                "ID:", movie.id,
+                "| Title:", movie.title,
+                "| Genre:", movie.genre,
+                "| Year:", movie.year,
+                "| Rating:", movie.rating,
+                "| Language:", movie.language
+            );
+        });
+
+        // =====================================
+        // 2. Search Movie By Title
+        // =====================================
+
+        let searchTitle = "rrr";
+
+        let foundMovie = movies.find(movie =>
+            movie.title.toLowerCase() === searchTitle.toLowerCase()
+        );
+
+        console.log("\n===== SEARCH MOVIE =====");
+
+        if (foundMovie) {
+            console.log("Movie Found:", foundMovie.title);
+        } else {
+            console.log("Movie Not Found");
+        }
+
+        // =====================================
+        // 3. Display Movies By Genre
+        // =====================================
+
+        let selectedGenre = "Action";
+
+        console.log("\n===== ACTION MOVIES =====");
+
+        movies
+            .filter(movie => movie.genre === selectedGenre)
+            .forEach(movie => console.log(movie.title));
+
+        // =====================================
+        // 4. Display Movies By Language
+        // =====================================
+
+        let selectedLanguage = "Telugu";
+
+        console.log("\n===== TELUGU MOVIES =====");
+
+        movies
+            .filter(movie => movie.language === selectedLanguage)
+            .forEach(movie => console.log(movie.title));
+
+        // =====================================
+        // 5. Highest Rated Movie
+        // =====================================
+
+        let highestRatedMovie = movies.reduce((highest, movie) =>
+            movie.rating > highest.rating ? movie : highest
+        );
+
+        console.log("\n===== HIGHEST RATED MOVIE =====");
+        console.log(highestRatedMovie.title);
+        console.log("Rating:", highestRatedMovie.rating);
+
+        // =====================================
+        // 6. Lowest Rated Movie
+        // =====================================
+
+        let lowestRatedMovie = movies.reduce((lowest, movie) =>
+            movie.rating < lowest.rating ? movie : lowest
+        );
+
+        console.log("\n===== LOWEST RATED MOVIE =====");
+        console.log(lowestRatedMovie.title);
+        console.log("Rating:", lowestRatedMovie.rating);
+
+        // =====================================
+        // 7. Movies Released After Specific Year
+        // =====================================
+
+        let yearInput = 2020;
+
+        console.log("\n===== MOVIES AFTER 2020 =====");
+
+        movies
+            .filter(movie => movie.year > yearInput)
+            .forEach(movie => console.log(movie.title));
+
+        // =====================================
+        // 8. Movies With Rating Greater Than 8
+        // =====================================
+
+        console.log("\n===== MOVIES WITH RATING > 8 =====");
+
+        movies
+            .filter(movie => movie.rating > 8)
+            .forEach(movie => console.log(movie.title));
+
+        // =====================================
+        // 9. Count Movies By Genre
+        // =====================================
+
+        console.log("\n===== MOVIE COUNT BY GENRE =====");
+
+        let genreCount = {};
+
+        movies.forEach(movie => {
+            genreCount[movie.genre] =
+                (genreCount[movie.genre] || 0) + 1;
+        });
+
+        for (let genre in genreCount) {
+            console.log(genre + " : " + genreCount[genre]);
+        }
+
+        // =====================================
+        // 10. Sort Movies By Rating
+        // =====================================
+
+        console.log("\n===== SORT BY RATING =====");
+
+        let ratingSortedMovies = [...movies].sort(
+            (a, b) => b.rating - a.rating
+        );
+
+        ratingSortedMovies.forEach(movie => {
+            console.log(movie.title + " - " + movie.rating);
+        });
+
+        // =====================================
+        // 11. Sort Movies By Release Year
+        // =====================================
+
+        console.log("\n===== SORT BY YEAR =====");
+
+        let yearSortedMovies = [...movies].sort(
+            (a, b) => b.year - a.year
+        );
+
+        yearSortedMovies.forEach(movie => {
+            console.log(movie.title + " - " + movie.year);
+        });
+
+        let totalMovies = movies.length;
+
+        let averageRating =
+        movies.reduce((sum, movie) => sum + movie.rating, 0) /
+        totalMovies;
+
+        let actionMovies =
+        movies.filter(movie => movie.genre === "Action").length;
+
+        let dramaMovies =
+        movies.filter(movie => movie.genre === "Drama").length;
+
+        let comedyMovies =
+        movies.filter(movie => movie.genre === "Comedy").length;
+
+        let sciFiMovies =
+        movies.filter(movie => movie.genre === "Sci-Fi").length;
+
+        let totalLanguages =
+        new Set(movies.map(movie => movie.language)).size;
+
+        console.log("\n===== MOVIE REPORT =====");
+
+        console.log("Total Movies :", totalMovies);
+        console.log("Highest Rated Movie :", highestRatedMovie.title);
+        console.log("Lowest Rated Movie :", lowestRatedMovie.title);
+        console.log("Average Rating :", averageRating.toFixed(1));
+        console.log("Action Movies :", actionMovies);
+        console.log("Drama Movies :", dramaMovies);
+        console.log("Comedy Movies :", comedyMovies);
+        console.log("Sci-Fi Movies :", sciFiMovies);
+        console.log("Languages Available :", totalLanguages);
+        
+
+    </script>
+
+</body>
+</html>
