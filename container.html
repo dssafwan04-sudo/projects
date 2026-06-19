@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile Card</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#f2f2f2;
+}
+
+.card{
+    width:320px;
+    background:#fff;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
+
+.card img{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    object-fit:cover;
+    margin-bottom:15px;
+}
+
+.card h2{
+    font-size:36px;
+    margin-bottom:5px;
+    color:#333;
+}
+
+.card p{
+    color:#888;
+    font-size:24px;
+    margin-bottom:20px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#0d8bf2;
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.following{
+    background:green;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Profile">
+    
+    <h2>Sarah Jensen</h2>
+    <p>@sarah_j</p>
+
+    <button id="followBtn" onclick="toggleFollow()">
+        Follow
+    </button>
+</div>
+
+<script>
+function toggleFollow(){
+    let btn = document.getElementById("followBtn");
+
+    if(btn.innerText === "Follow"){
+        btn.innerText = "Following";
+        btn.classList.add("following");
+    }else{
+        btn.innerText = "Follow";
+        btn.classList.remove("following");
+    }
+}
+</script>
+
+</body>
+</html>
