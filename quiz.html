@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Quiz Application</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#4e54c8,#8f94fb);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:700px;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.screen{
+    display:none;
+}
+
+.active{
+    display:block;
+}
+
+h1,h2,h3{
+    margin-bottom:20px;
+}
+
+p{
+    margin:10px 0;
+}
+
+#options{
+    margin-top:20px;
+}
+
+.option{
+    background:#f1f1f1;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:15px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.option:hover{
+    background:#dfe6ff;
+}
+
+.option.selected{
+    background:#4e54c8;
+    color:white;
+}
+
+.buttons{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:20px;
+}
+
+button{
+    padding:12px 20px;
+    border:none;
+    border-radius:8px;
+    background:#4e54c8;
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#2f36b5;
+}
+
+.progress-container{
+    width:100%;
+    height:10px;
+    background:#ddd;
+    border-radius:20px;
+    margin-top:10px;
+}
+
+#progress-bar{
+    width:10%;
+    height:10px;
+    background:#4e54c8;
+    border-radius:20px;
+}
+
+@media(max-width:600px){
+    .buttons{
+        flex-direction:column;
+    }
+
+    button{
+        width:100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Welcome Screen -->
+    <div id="welcome-screen" class="screen active">
+        <h1>Interactive Quiz Application</h1>
+        <p>Test your JavaScript knowledge.</p>
+        <p>Total Questions: 10</p>
+        <button id="start-btn">Start Quiz</button>
+    </div>
+
+    <!-- Quiz Screen -->
+    <div id="quiz-screen" class="screen">
+
+        <h3 id="progress">Question 1 of 10</h3>
+
+        <div class="progress-container">
+            <div id="progress-bar"></div>
+        </div>
+
+        <h2 id="question"></h2>
+
+        <div id="options"></div>
+
+        <div class="buttons">
+            <button id="prev-btn">Previous</button>
+            <button id="next-btn">Next</button>
+            <button id="submit-btn" style="display:none;">
+                Submit Quiz
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Result Screen -->
+    <div id="result-screen" class="screen">
+        <h1>Quiz Completed!</h1>
+
+        <h2 id="message"></h2>
+
+        <p>Total Questions: <span id="total"></span></p>
+        <p>Correct Answers: <span id="correct"></span></p>
+        <p>Wrong Answers: <span id="wrong"></span></p>
+        <p>Score: <span id="score"></span></p>
+        <p>Percentage: <span id="percentage"></span>%</p>
+
+        <button id="restart-btn">Restart Quiz</button>
+    </div>
+
+</div>
+
+<script>
+
+const quizData = [
+{
+    question:"Which language is used for web page structure?",
+    options:["HTML","CSS","Java","Python"],
+    answer:"HTML"
+},
+{
+    question:"Which language is used for styling?",
+    options:["C","CSS","Java","Python"],
+    answer:"CSS"
+},
+{
+    question:"Which language makes websites interactive?",
+    options:["JavaScript","HTML","C++","SQL"],
+    answer:"JavaScript"
+},
+{
+    question:"Which keyword declares a variable?",
+    options:["let","print","echo","display"],
+    answer:"let"
+},
+{
+    question:"Which symbol is used for comments in JavaScript?",
+    options:["//","##","**","<!--"],
+    answer:"//"
+},
+{
+    question:"Which method prints output to console?",
+    options:["console.log()","print()","echo()","display()"],
+    answer:"console.log()"
+},
+{
+    question:"DOM stands for?",
+    options:[
+        "Document Object Model",
+        "Data Object Method",
+        "Document Output Mode",
+        "Display Object Method"
+    ],
+    answer:"Document Object Model"
+},
+{
+    question:"Which company developed JavaScript?",
+    options:["Netscape","Google","Microsoft","Apple"],
+    answer:"Netscape"
+},
+{
+    question:"Which operator means equal value and equal type?",
+    options:["===","==","!=","="],
+    answer:"==="
+},
+{
+    question:"Which event occurs when a button is clicked?",
+    options:["click","hover","load","change"],
+    answer:"click"
+}
+];
+
+const welcomeScreen = document.getElementById("welcome-screen");
+const quizScreen = document.getElementById("quiz-screen");
+const resultScreen = document.getElementById("result-screen");
+
+const questionElement = document.getElementById("question");
+const optionsElement = document.getElementById("options");
+const progressElement = document.getElementById("progress");
+const progressBar = document.getElementById("progress-bar");
+
+const startBtn = document.getElementById("start-btn");
+const prevBtn = document.getElementById("prev-btn");
+const nextBtn = document.getElementById("next-btn");
+const submitBtn = document.getElementById("submit-btn");
+const restartBtn = document.getElementById("restart-btn");
+
+let currentQuestion = 0;
+let answers = [];
+
+startBtn.addEventListener("click", startQuiz);
+prevBtn.addEventListener("click", previousQuestion);
+nextBtn.addEventListener("click", nextQuestion);
+submitBtn.addEventListener("click", submitQuiz);
+restartBtn.addEventListener("click", restartQuiz);
+
+function startQuiz() {
+    welcomeScreen.classList.remove("active");
+    quizScreen.classList.add("active");
+    loadQuestion();
+}
+
+function loadQuestion() {
+
+    let q = quizData[currentQuestion];
+
+    questionElement.textContent = q.question;
+
+    progressElement.textContent =
+        `Question ${currentQuestion + 1} of ${quizData.length}`;
+
+    progressBar.style.width =
+        ((currentQuestion + 1) / quizData.length) * 100 + "%";
+
+    optionsElement.innerHTML = "";
+
+    q.options.forEach(option => {
+
+        const div = document.createElement("div");
+        div.classList.add("option");
+        div.textContent = option;
+
+        if(answers[currentQuestion] === option){
+            div.classList.add("selected");
+        }
+
+        div.addEventListener("click", () => {
+
+            answers[currentQuestion] = option;
+
+            document.querySelectorAll(".option")
+            .forEach(opt => opt.classList.remove("selected"));
+
+            div.classList.add("selected");
+        });
+
+        optionsElement.appendChild(div);
+    });
+
+    prevBtn.disabled = currentQuestion === 0;
+
+    if(currentQuestion === quizData.length - 1){
+        nextBtn.style.display = "none";
+        submitBtn.style.display = "inline-block";
+    } else {
+        nextBtn.style.display = "inline-block";
+        submitBtn.style.display = "none";
+    }
+}
+
+function nextQuestion(){
+    if(currentQuestion < quizData.length - 1){
+        currentQuestion++;
+        loadQuestion();
+    }
+}
+
+function previousQuestion(){
+    if(currentQuestion > 0){
+        currentQuestion--;
+        loadQuestion();
+    }
+}
+
+function submitQuiz(){
+
+    let correct = 0;
+
+    quizData.forEach((question,index)=>{
+        if(answers[index] === question.answer){
+            correct++;
+        }
+    });
+
+    let wrong = quizData.length - correct;
+    let percentage = (correct / quizData.length) * 100;
+
+    document.getElementById("total").textContent = quizData.length;
+    document.getElementById("correct").textContent = correct;
+    document.getElementById("wrong").textContent = wrong;
+    document.getElementById("score").textContent =
+        correct + " / " + quizData.length;
+    document.getElementById("percentage").textContent =
+        percentage.toFixed(2);
+
+    let message = "";
+
+    if(percentage >= 90){
+        message = "Excellent!";
+    }
+    else if(percentage >= 75){
+        message = "Great Job!";
+    }
+    else if(percentage >= 50){
+        message = "Good Effort!";
+    }
+    else{
+        message = "Keep Practicing!";
+    }
+
+    document.getElementById("message").textContent = message;
+
+    quizScreen.classList.remove("active");
+    resultScreen.classList.add("active");
+
+    localStorage.setItem(
+        "Highest Score",
+        Math.max(correct,
+        localStorage.getItem("Highest Score") || 0)
+    );
+}
+
+function restartQuiz(){
+    currentQuestion = 0;
+    answers = [];
+
+    resultScreen.classList.remove("active");
+    welcomeScreen.classList.add("active");
+}
+
+</script>
+
+</body>
+</html>
